@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
-import mongoose from "mongoose";
 dotenv.config();
 import app from "./app.js";
+import mongoose from "mongoose";
 
 //DB Connection
 const connect = async () => {
@@ -9,7 +9,7 @@ const connect = async () => {
     await mongoose.connect(process.env.MONGO_URL);
     console.log("DB Connection Successful");
   } catch (error) {
-    throw Error;
+    console.log(error);
   }
 };
 
