@@ -7,7 +7,10 @@ import {
   getTour,
   updateTour,
   deleteTour,
+  aliasTopTours,
 } from "../controllers/tourController.js";
+
+router.route("/top-5-cheap").get(aliasTopTours, getAlltours);
 
 router.route("/").get(getAlltours).post(createTour);
 

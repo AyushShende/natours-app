@@ -1,9 +1,23 @@
 import Tour from "../models/Tour.js";
 import { catchAsync } from "../utils/catchAsync.js";
 import AppError from "../utils/appError.js";
+import ApiFeatures from "../utils/apiFeatures.js";
+
+export const aliasTopTours = (req, res, next) => {
+  req.query.limit = "5";
+  req.query.sort = "-ratingsAverage,price";
+  req.query.fields = "name,difficulty,price,summary,ratingsAverage";
+  next();
+};
 
 export const getAlltours = catchAsync(async (req, res, next) => {
-  const tours = await Tour.find();
+  const features = new ApiFeatures(Tour.find(), req.query)
+    .filter()
+    .sort()
+    .limitFields()
+    .paginate();
+
+  const tours = await features.query;
 
   res.status(200).json({
     status: "success",
