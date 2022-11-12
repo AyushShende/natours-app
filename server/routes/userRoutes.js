@@ -1,16 +1,34 @@
-import express from "express";
+import express from 'express';
+import {
+  forgotPassword,
+  login,
+  resetPassword,
+  signup,
+  updatePassword,
+} from '../controllers/authController.js';
 import {
   createUser,
+  deleteMe,
   deleteUser,
   getAllUsers,
   getUser,
+  updateMe,
   updateUser,
-} from "../controllers/userController.js";
+} from '../controllers/userController.js';
+import { protect } from '../middlewares/protect.js';
 
 const router = express.Router();
 
-router.route("/").get(getAllUsers).post(createUser);
+router.post('/signup', signup);
+router.post('/login', login);
+router.post('/forgotPassword', forgotPassword);
+router.patch('/resetPassword/:token', resetPassword);
+router.patch('/updateMyPassword', protect, updatePassword);
 
-router.route("/:id").get(getUser).patch(updateUser).delete(deleteUser);
+router.patch('/updateMe', protect, updateMe);
+router.delete('/deleteMe', protect, deleteMe);
+
+router.route('/').get(getAllUsers).post(createUser);
+router.route('/:id').get(getUser).patch(updateUser).delete(deleteUser);
 
 export default router;

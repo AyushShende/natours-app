@@ -1,19 +1,27 @@
 import dotenv from "dotenv";
+
+process.on("uncaughtException", (err) => {
+  console.log("UNCAUGHT EXCEPTION! 💥 Shutting Down...");
+  console.log(err.name, err.message);
+  process.exit(1);
+});
 dotenv.config();
 import app from "./app.js";
 import mongoose from "mongoose";
 
 //DB Connection
 const connect = async () => {
-  try {
-    await mongoose.connect(process.env.MONGO_URL);
-    console.log("DB Connection Successful");
-  } catch (error) {
-    console.log(error);
-  }
+  await mongoose.connect(process.env.MONGO_URL);
+  console.log("DB Connection Successful");
 };
 
-app.listen(process.env.PORT || 4000, () => {
+const server = app.listen(process.env.PORT || 4000, () => {
   connect();
   console.log(`Server started on ${process.env.PORT}`);
+});
+
+process.on("unhandledRejection", (err) => {
+  console.log("UNHANDLED REJECTION! 💥 Shutting Down...");
+  console.log(err.name, err.message);
+  server.close(() => process.exit(1));
 });
