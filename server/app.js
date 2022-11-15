@@ -4,6 +4,7 @@ import { globalErrorHandler } from './middlewares/errorHandler.js';
 import AppError from './utils/appError.js';
 import tourRoutes from './routes/tourRoutes.js';
 import userRoutes from './routes/userRoutes.js';
+import reviewRoutes from './routes/reviewRoutes.js';
 import { limiter } from './middlewares/limiter.js';
 import helmet from 'helmet';
 import mongoSanitize from 'express-mongo-sanitize';
@@ -44,6 +45,7 @@ app.use(
 //      ROUTES
 app.use('/api/tours', tourRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/reviews', reviewRoutes);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));

@@ -1,6 +1,7 @@
 import User from '../models/User.js';
 import AppError from '../utils/appError.js';
 import { catchAsync } from '../utils/catchAsync.js';
+import { deleteOne, getAll, getOne, updateOne } from './handlerFactory.js';
 
 const filterObj = (obj, ...allowedFields) => {
   const newObj = {};
@@ -8,6 +9,11 @@ const filterObj = (obj, ...allowedFields) => {
     if (allowedFields.includes(el)) newObj[el] = obj[el];
   });
   return newObj;
+};
+
+export const getMe = (req, res, next) => {
+  req.params.id = req.user.id;
+  next();
 };
 
 export const updateMe = catchAsync(async (req, res, next) => {
@@ -48,12 +54,17 @@ export const deleteMe = catchAsync(async (req, res, next) => {
   });
 });
 
-export const getAllUsers = () => {};
+export const createUser = (req, res, next) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'This route is not defined, Please use /signup instead',
+  });
+};
 
-export const getUser = () => {};
+export const getUser = getOne(User);
 
-export const createUser = () => {};
+export const updateUser = updateOne(User);
 
-export const updateUser = () => {};
+export const deleteUser = deleteOne(User);
 
-export const deleteUser = () => {};
+export const getAllUsers = getAll(User);
