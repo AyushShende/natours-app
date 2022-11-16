@@ -1,6 +1,6 @@
 import Review from '../models/Review.js';
-// import AppError from '../utils/appError.js';
-// import { catchAsync } from '../utils/catchAsync.js';
+import AppError from '../utils/appError.js';
+import { catchAsync } from '../utils/catchAsync.js';
 import {
   createOne,
   deleteOne,
@@ -14,6 +14,13 @@ export const setTourUserIds = (req, res, next) => {
   if (!req.body.user) req.body.user = req.user.id;
   next();
 };
+
+export const checkUserId = catchAsync(async (req, res, next) => {
+  const review = await Review.findById(req.params.id);
+  if (req.user.id !== review.user.id)
+    return next(new AppError('You are not allowed to do that', 401));
+  next();
+});
 
 export const createReview = createOne(Review);
 

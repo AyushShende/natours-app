@@ -1,6 +1,7 @@
 import express from 'express';
 const router = express.Router({ mergeParams: true });
 import {
+  checkUserId,
   createReview,
   deleteReview,
   getAllReviews,
@@ -21,6 +22,6 @@ router
 router
   .route('/:id')
   .get(getReview)
-  .patch(restrictTo('user', 'admin'), updateReview)
-  .delete(restrictTo('user', 'admin'), deleteReview);
+  .patch(restrictTo('user', 'admin'), checkUserId, updateReview)
+  .delete(restrictTo('user', 'admin'), checkUserId, deleteReview);
 export default router;
