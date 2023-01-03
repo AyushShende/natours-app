@@ -1,0 +1,26 @@
+.section__gallery {
+  padding: 8rem;
+  background-color: var(--primary-100);
+}
+
+.gallery__text {
+  font-size: 1.8rem;
+  margin-bottom: 4rem;
+}
+
+.photos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* grid-template-rows: 35rem 35rem; */
+  grid-auto-rows: 35rem;
+  gap: 2rem;
+}
+
+.gallery__img__box img {
+  height: 100%;
+  border-radius: 2rem;
+}
+
+.item2 {
+  grid-area: 1 / 2 / 3 / 3;
+}

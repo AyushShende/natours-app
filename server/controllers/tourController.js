@@ -1,5 +1,5 @@
 import Tour from '../models/Tour.js';
-import { catchAsync } from '../utils/catchAsync.js';
+import catchAsync from '../middlewares/catchAsync.js';
 import AppError from '../utils/appError.js';
 import ApiFeatures from '../utils/apiFeatures.js';
 import {
@@ -17,7 +17,33 @@ export const aliasTopTours = (req, res, next) => {
   next();
 };
 
-export const getAlltours = getAll(Tour);
+export const getAlltours = async (req, res) => {
+  try {
+    // EXECUTE QUERY
+    const features = new ApiFeatures(Tour.find(), req.query)
+      .filter()
+      .sort()
+      .limitFields()
+      .paginate();
+    const tours = await features.query;
+
+    // SEND RESPONSE
+    res.status(200).json({
+      status: 'success',
+      results: tours.length,
+      data: {
+        tours,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err,
+    });
+  }
+};
+
+// export const getAlltours = getAll(Tour);
 
 export const createTour = createOne(Tour);
 
@@ -46,9 +72,7 @@ export const getStats = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     status: 'success',
-    data: {
-      stats,
-    },
+    data: stats,
   });
 });
 
@@ -90,9 +114,7 @@ export const getMonthlyPlan = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: 'success',
     results: plan.length,
-    data: {
-      plan,
-    },
+    data: plan,
   });
 });
 
@@ -118,9 +140,7 @@ export const getToursWithin = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: 'success',
     results: tours.length,
-    data: {
-      data: tours,
-    },
+    data: tours,
   });
 });
 
@@ -159,8 +179,6 @@ export const getDistances = catchAsync(async (req, res, next) => {
   ]);
   res.status(200).json({
     status: 'success',
-    data: {
-      data: distances,
-    },
+    data: distances,
   });
 });

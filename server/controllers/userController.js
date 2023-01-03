@@ -1,6 +1,6 @@
 import User from '../models/User.js';
 import AppError from '../utils/appError.js';
-import { catchAsync } from '../utils/catchAsync.js';
+import catchAsync from '../middlewares/catchAsync.js';
 import { deleteOne, getAll, getOne, updateOne } from './handlerFactory.js';
 
 const filterObj = (obj, ...allowedFields) => {
@@ -37,9 +37,7 @@ export const updateMe = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     status: 'success',
-    data: {
-      user: updatedUser,
-    },
+    data: updatedUser,
   });
 });
 

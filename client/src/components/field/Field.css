@@ -1,0 +1,21 @@
+.fact__field {
+  font-size: 1.8rem;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+
+.field__icon {
+  font-size: 2.4rem;
+  color: var(--primary-200);
+  display: flex;
+  align-items: center;
+}
+
+.field__title {
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+}

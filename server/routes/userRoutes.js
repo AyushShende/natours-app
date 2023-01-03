@@ -2,7 +2,9 @@ import express from 'express';
 const router = express.Router();
 import {
   forgotPassword,
+  // isLoggedIn,
   login,
+  logout,
   resetPassword,
   signup,
   updatePassword,
@@ -22,14 +24,17 @@ import { restrictTo } from '../middlewares/restrict.js';
 
 router.post('/signup', signup);
 router.post('/login', login);
+router.get('/logout', logout);
 router.post('/forgotPassword', forgotPassword);
 router.patch('/resetPassword/:token', resetPassword);
+// router.get('/isLoggedIn', isLoggedIn);
 
 // Protect all the following routes
 router.use(protect);
 
-router.patch('/updateMyPassword', updatePassword);
 router.get('/me', getMe, getUser);
+
+router.patch('/updateMyPassword', updatePassword);
 router.patch('/updateMe', updateMe);
 router.delete('/deleteMe', deleteMe);
 

@@ -10,14 +10,17 @@ import helmet from 'helmet';
 import mongoSanitize from 'express-mongo-sanitize';
 import xss from 'xss-clean';
 import hpp from 'hpp';
+import cookieParser from 'cookie-parser';
 
 //      MIDDLEWARES
 
 // Set security HTTP headers
 app.use(helmet());
 
-// Limit requests from same API
+// Limit requests from same API (/api => applies to all routes starting with /api)
 app.use('/api', limiter);
+
+app.use(cookieParser());
 
 // Body parser, reading data from body into req.body
 app.use(express.json({ limit: '10kb' }));

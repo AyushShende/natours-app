@@ -47,6 +47,7 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+// Hashing the entered password before persisting to DB.(doc middleware)
 userSchema.pre('save', async function (next) {
   //Only run this function if password was actually modified
   if (!this.isModified('password')) return next();
@@ -60,6 +61,7 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
+// Set passwordChangedAt when updating the password.(doc middleware)
 userSchema.pre('save', function (next) {
   if (!this.isModified('password') || this.isNew) return next();
 
@@ -67,12 +69,14 @@ userSchema.pre('save', function (next) {
   next();
 });
 
+// Query middleware to show only active users.
 userSchema.pre(/^find/, function (next) {
   //this points to the current query
   this.find({ active: { $ne: false } });
   next();
 });
 
+// Instance method to check the entered password and stored password.
 userSchema.methods.correctPassword = async function (
   candidatePassword,
   userPassword
@@ -80,6 +84,7 @@ userSchema.methods.correctPassword = async function (
   return await bcrypt.compare(candidatePassword, userPassword);
 };
 
+// Instance method to check if password was updated after issuing access token
 userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
   if (this.passwordChangedAt) {
     const changedTimestamp = this.passwordChangedAt.getTime() / 1000;
@@ -88,6 +93,7 @@ userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
   return false;
 };
 
+// Instance method to generate reset token
 userSchema.methods.createPasswordResetToken = function () {
   // generate random reset token
   const resetToken = crypto.randomBytes(32).toString('hex');
@@ -99,11 +105,7 @@ userSchema.methods.createPasswordResetToken = function () {
     .digest('hex');
 
   this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
-  console.log(
-    { resetToken },
-    this.passwordResetToken,
-    this.passwordResetExpires
-  );
+
   return resetToken;
 };
 

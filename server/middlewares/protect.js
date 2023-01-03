@@ -1,5 +1,5 @@
 import AppError from '../utils/appError.js';
-import { catchAsync } from '../utils/catchAsync.js';
+import catchAsync from './catchAsync.js';
 import { promisify } from 'util';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
@@ -7,13 +7,7 @@ import User from '../models/User.js';
 // Protect routes and allow access to only authenticated users.
 export const protect = catchAsync(async (req, res, next) => {
   //1. Getting token and check if it's there
-  let token;
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith('Bearer')
-  ) {
-    token = req.headers.authorization.split(' ')[1];
-  }
+  const token = req.cookies.access_token;
 
   if (!token) {
     return next(

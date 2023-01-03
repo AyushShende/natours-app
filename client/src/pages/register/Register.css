@@ -1,0 +1,35 @@
+.section__register {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-100);
+}
+
+.form {
+  background-color: #fff;
+  padding: 2rem 4rem;
+  font-size: 1.8rem;
+  border-top: 0.5rem solid var(--primary-400);
+  border-radius: 0.7rem;
+  width: 40rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.form__title {
+  font-size: 4rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+
+
+.form__link {
+  border: none;
+  background: none;
+  color: var(--primary-300);
+  font-size: 1.8rem;
+  cursor: pointer;
+}

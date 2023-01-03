@@ -1,0 +1,153 @@
+/* 
+Font Scale: 8 / 10 / 12 / 16 / 18 / 20 / 24 / 30 / 40 / 48 / 60 / 74 / 94
+
+Space Scale: 1 / 2 / 4 / 8 / 16 / 24 / 32 / 48 / 64 / 80
+
+-- Font Weights: 400 / 500 / 600 / 700
+-- Line Heights: 1 / 1.05 / 1.2 / 1.6 / 1.8
+-- Letter Spacing: -0.5px / 0.75px
+*/
+
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+
+
+html {
+  font-size: 62.5%;
+}
+
+:root {
+  /* Colors */
+  --primary-100: #EEF2E6;
+  --primary-150: #DFE6D0;
+  --primary-200: #60B58C;
+  --primary-300: #428F6A;
+  --primary-400: #3D8361;
+  --primary-600: #185A4D;
+  --primary-700: #2D6047;
+
+  --accent-100: #FF3D00;
+  --grey-50: #777;
+  --grey-100: #555;
+  --grey-200: #333;
+
+  --red-light: #f8d7da;
+  --red-dark: #842029;
+  --green-light: #d1e7dd;
+  --green-dark: #0f5132;
+  --green-100: #1B7F4C;
+  --green-200: #096436;
+
+  --bodyFont: 'Open Sans', sans-serif;
+
+}
+
+body {
+  font-family: var(--bodyFont);
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--grey-100);
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.heading__primary,
+.heading__secondary,
+.heading__tertiary {
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+}
+
+.heading__primary {
+  font-size: 6rem;
+}
+
+.heading__secondary,
+.heading__tertiary {
+  color: var(--grey-200);
+  line-height: 1.2;
+}
+
+.heading__secondary {
+  font-size: 4rem;
+  margin-bottom: 2rem;
+}
+
+.heading__tertiary {
+  font-size: 3rem;
+}
+
+.btn {
+  padding: 1.6rem 3.2rem;
+  font-size: 2rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 9px;
+  text-transform: uppercase;
+  background-color: var(--green-100);
+  color: var(--primary-100);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: var(--green-200);
+}
+
+/* 
+    ALERTS
+*/
+
+.alert {
+  padding: 1rem 2rem;
+  margin-bottom: 1rem;
+  border-color: transparent;
+  border-radius: 0.5rem;
+  text-align: center;
+  font-size: 1.6rem;
+}
+
+.alert-danger {
+  color: var(--red-dark);
+  background: var(--red-light);
+}
+
+.alert-success {
+  color: var(--green-dark);
+  background: var(--green-light);
+}
+
+
+.form__btn {
+  width: 100%;
+  padding: 1.5rem 0;
+  cursor: pointer;
+  border: none;
+  background-color: var(--primary-300);
+  color: var(--primary-100);
+  font-size: 1.8rem;
+  transition: all 0.3s;
+}
+
+.form__btn:hover {
+  background-color: var(--primary-400);
+}

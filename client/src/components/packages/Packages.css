@@ -1,0 +1,21 @@
+.section__packages {
+  padding: 8rem 16rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rem;
+
+}
+
+.packages__header {
+  text-align: center;
+}
+
+.subheading {
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.75px;
+  margin-bottom: 1.6rem;
+  color: var(--accent-100);
+}

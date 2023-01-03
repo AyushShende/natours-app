@@ -1,9 +1,10 @@
 import User from '../models/User.js';
-import { catchAsync } from '../utils/catchAsync.js';
+import catchAsync from '../middlewares/catchAsync.js';
 import jwt from 'jsonwebtoken';
 import AppError from '../utils/appError.js';
 import { sendEmail } from '../utils/email.js';
 import crypto from 'crypto';
+import { promisify } from 'util';
 
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -25,14 +26,9 @@ const createSendToken = (user, statusCode, res) => {
   // Remove password from output.
   user.password = undefined;
 
-  res.cookie('jwt', token, cookieOptions);
-
-  res.status(statusCode).json({
+  res.cookie('access_token', token, cookieOptions).status(statusCode).json({
     status: 'success',
-    token,
-    data: {
-      user,
-    },
+    data: user,
   });
 };
 
@@ -164,3 +160,12 @@ export const updatePassword = catchAsync(async (req, res, next) => {
   //4.Log user in, send JWT
   createSendToken(user, 200, res);
 });
+
+export const logout = (req, res) => {
+  res.cookie('access_token', 'loggedout', {
+    expires: new Date(Date.now()),
+    httpOnly: true,
+  });
+
+  res.status(200).json({ status: 'success' });
+};

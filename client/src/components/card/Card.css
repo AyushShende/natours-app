@@ -1,0 +1,94 @@
+.card {
+  display: grid;
+  grid-template-columns: 35fr 38fr 27fr;
+}
+
+.card__img__box img {
+  border-radius: 2rem 0 0 2rem;
+  height: 100%;
+}
+
+.card__content {
+  background-color: var(--primary-100);
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.card__text {
+  font-size: 1.6rem;
+}
+
+.card__text span {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  display: block;
+}
+
+.card__meta__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 1rem;
+  font-size: 1.6rem;
+}
+
+.card__meta__item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.card__icon {
+  color: var(--primary-200);
+  font-size: 1.8rem;
+}
+
+.card__cta {
+  background-color: var(--primary-300);
+  color: var(--primary-100);
+  font-size: 1.8rem;
+  border-radius: 0 2rem 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.card__review {
+  display: flex;
+  gap: 2rem;
+}
+
+.card__price {
+  text-align: center;
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+}
+
+.card__price span {
+  font-weight: 700;
+  font-size: 6rem;
+  display: block;
+  margin-bottom: -2rem;
+}
+
+.btn__r {
+  border: 2px solid var(--primary-100);
+  background-color: transparent;
+  color: var(--primary-100);
+  padding: 1.5rem 4rem;
+  font-size: 1.8rem;
+  border-radius: 100px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  transition: all 0.3s;
+}
+
+.btn__r:hover {
+  background-color: hsla(0, 0%, 100%, 0.1);
+}

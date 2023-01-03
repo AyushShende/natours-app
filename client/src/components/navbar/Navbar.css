@@ -1,0 +1,82 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  padding: 2rem 8rem;
+  font-size: 2.4rem;
+  position: relative;
+}
+
+
+
+.transparent {
+  position: absolute;
+  top: 0;
+  z-index: 2;
+}
+
+.dark {
+  /* background-color: #333; */
+}
+
+.logo {
+  width: 15%;
+}
+
+.nav__items {
+  display: flex;
+  gap: 4rem;
+}
+
+.nav__item {
+  cursor: pointer;
+}
+
+.user__btn {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: var(--grey-100);
+}
+
+.user__img__box {
+  width: 20%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.options {
+  position: absolute;
+  top: 8rem;
+  right: 8rem;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  width: 12rem;
+  background-color: var(--primary-100);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.option_btn {
+  padding: 1rem 2rem;
+  font-size: 1.6rem;
+  color: var(--grey-100);
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.option_btn:hover {
+  background-color: var(--primary-150);
+}

@@ -1,0 +1,13 @@
+.error__page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--primary-100);
+  font-size: 1.8rem;
+}
+
+.error__title {
+  font-size: 4rem;
+}

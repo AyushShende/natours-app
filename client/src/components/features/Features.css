@@ -1,0 +1,12 @@
+.section__features {
+  background-color: var(--primary-100);
+  padding: 8rem;
+
+}
+
+.feature__box {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4rem;
+  align-items: center;
+}
